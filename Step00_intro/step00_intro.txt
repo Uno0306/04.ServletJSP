@@ -1,0 +1,3 @@
+http://localhost:8080/Step00_intro/FirstServlet
+
+프로토콜://ip주소:포트번호/프로젝트명/자원경로

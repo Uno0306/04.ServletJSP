@@ -17,7 +17,7 @@ step03_session
 			- Map - key : value
 		- Cookie 객체의 정보를 Client 시스템에 저장
 		- 이동한 Web Page에서 Client 시스템에 있는 Cookie 정보를 획득, 사용
-		- 상태 유지 비활성시 Client 시스텡ㅁ의 쿠키 정보 삭제
+		- 상태 유지 비활성시 Client 시스템의 쿠키 정보 삭제
 		
 2. Server 시스템에 데이터 저장 : Session
 	- 서버의 메모리에 데이터 저장

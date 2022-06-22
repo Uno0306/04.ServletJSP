@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.eclipse.jdt.internal.compiler.codegen.CachedIndexEntry;
 
@@ -28,8 +29,9 @@ public class IdSave extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("save servlet");
+//		System.out.println("save servlet");
 		
+		/*
 		// step01 cookie
 		Cookie cookie3 = new Cookie("myName", "busan");
 		cookie3.setMaxAge(60 * 60 * 24);
@@ -38,6 +40,14 @@ public class IdSave extends HttpServlet {
 		
 		// 화면으로 돌려준다 가정
 		response.sendRedirect("final");
+		*/
+
+		/**/
+		// step02 session
+		HttpSession session2 = request.getSession();
+		System.out.println("IdSave = " + session2.getId());
+
+		response.sendRedirect("sessionFinal");
 	}
 
 }

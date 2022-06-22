@@ -30,16 +30,22 @@ public class Final extends HttpServlet {
 	// Client에 있는 Cookie 정보 획득 - 해당 서비스에서 발생시킨 쿠키 정보에 한해서만 획득
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("final servlet");
+    	response.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html; charset=UTF-8");
+    	
     	// myId, myAge, myName 으로 지정되어 있는 모든  쿠키 출럭	
     	Cookie[] cookies = request.getCookies();
  
     	for (Cookie cookie : cookies) {
-			System.out.println("쿠키1 : " + cookie.getName());
-			System.out.println("쿠키2 : " + cookie.getValue());
-			response.getWriter().print("name : " + cookie.getName() + "<br/>");
-			response.getWriter().print("value : " + cookie.getValue() + "<br/>");
-			cookie.setMaxAge(0);
+			System.out.println("쿠키이름 : " + cookie.getName());
+			System.out.println("쿠키값 : " + cookie.getValue());
+			response.getWriter().print("name : " + cookie.getName() + ", value : " + cookie.getValue() + "<br/>");
+//			cookie.setMaxAge(0);
 		}
+    	
+    	Cookie removeName = new Cookie("myName", null);
+    	removeName.setMaxAge(0);
+    	response.addCookie(removeName);
     }
 
 }

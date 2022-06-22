@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class IdCheck
@@ -31,9 +32,12 @@ public class IdCheck extends HttpServlet {
 //		response.setCharacterEncoding("UTF-8");
 //		response.setContentType("text/html; charset=UTF-8");
 
-		String id = request.getParameter("uname");
-		System.out.println(id);
-		
+
+		/* 쿠키
+
+//		String id = request.getParameter("uname");
+//		System.out.println(id);
+
 		if(id != null && id.length() != 0 && !("".equals(id))) {
 			// 쿠키 생성
 			Cookie cookie1 = new Cookie("myID", id);
@@ -50,6 +54,15 @@ public class IdCheck extends HttpServlet {
 			response.sendRedirect("save");
 			
 		}
+		*/
+		
+		/* 세션 */
+		HttpSession session1 = request.getSession();
+		System.out.println("IdCheck - " + session1.getId());
+		session1.setAttribute("lecture", "Web Study");
+		response.sendRedirect("save");
+		
+		
 		
     }
 

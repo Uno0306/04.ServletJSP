@@ -10,11 +10,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
-
-<SCRIPT language=javascript>
-	document.location.href="guestbook.do";
-</script>
-
 <style>
 	a{
 		text-decoration:none;

@@ -17,14 +17,6 @@
 	}
 </style>
 
-<%
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	Calendar cal = new GregorianCalendar();
-/* 	sdf.format(cal);
- */	cal.add(Calendar.DAY_OF_MONTH, -1);
-	/* sdf.format(cal); */
-%>
-
 <table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<tr>
         <td bgcolor="#336699">
@@ -58,9 +50,8 @@
 	<fmt:formatDate var="today" value="${now}" pattern="yyyyMMdd"/><!-- 현재시간을 숫자로 -->
 	
 	<c:forEach items="${requestScope.list}" var="data">
-		<c:set var="darr" value="${data.writeday.split(' ') }"/>
-		<fmt:parseDate var="writeDa" value="${darr[0]}" pattern="yyyy-MM-dd"/><!-- 게시글 작성날짜를 숫자로 -->
-		<fmt:formatDate var="writeDay" value="${writeDa}" pattern="yyyyMMdd"/><!-- 게시글 작성날짜를 숫자로 -->
+		<fmt:parseDate var="date" value="${data.writeday}" pattern="yyyy-MM-dd HH:mm:ss"/><!-- 게시글 작성날짜를 숫자로 -->
+		<fmt:formatDate var="writeDay" value="${date}" pattern="yyyyMMdd"/><!-- 게시글 작성날짜를 숫자로 -->
 		    <tr>
 		        <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">${data.num}</span></p>

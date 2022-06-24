@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>error.jsp</title>
+		<title>ERROR</title>
 		<style>
 			a{
 				text-decoration:none;
@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		
-		죄송합니다. 문제가 발생하였습니다.<br>
+		<h1>접근이 거부된 페이지입니다.</h1>
 		
 		<br><hr><br>
 		${requestScope.error}  

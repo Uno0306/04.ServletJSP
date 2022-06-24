@@ -4,8 +4,8 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 배열 또는 List, null 등에 데이터가 저장 되었는지 확인하기 위한 length() 사용을 위한 선언 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -16,7 +16,7 @@
 		color:black;
 	}
 </style>
-
+	<c:set var="in" value="da" />
 <table align="center" border="0" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<tr>
         <td bgcolor="#336699">
@@ -44,13 +44,14 @@
 	    </tr>
 	</c:if>
 
-	<%-- ArrayList에  GuestBookBean 객체를 하나하나 data라는 반복 대입해서 사용 --%>
+
 	<c:set var="now" value="<%=new java.util.Date() %>" />
 	
 	<fmt:formatDate var="today" value="${now}" pattern="yyyyMMdd"/><!-- 현재시간을 숫자로 -->
 	
+	<%-- ArrayList에  GuestBookBean 객체를 하나하나 data라는 반복 대입해서 사용 --%>
 	<c:forEach items="${requestScope.list}" var="data">
-		<fmt:parseDate var="date" value="${data.writeday}" pattern="yyyy-MM-dd HH:mm:ss"/><!-- 게시글 작성날짜를 숫자로 -->
+		<fmt:parseDate var="date" value="${data.writeday}" pattern="yyyy-MM-dd HH:mm:ss"/><!-- 게시글 작성날짜의 패턴 변환 -->
 		<fmt:formatDate var="writeDay" value="${date}" pattern="yyyyMMdd"/><!-- 게시글 작성날짜를 숫자로 -->
 		    <tr>
 		        <td bgcolor="">

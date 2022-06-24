@@ -59,7 +59,7 @@
 			<http-method>POST</http-method>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>Denial All</role-name>
+			<role-name>Denial HTML</role-name>
 		</auth-constraint>
 	</security-constraint>
 

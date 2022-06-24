@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,18 +15,31 @@ import javax.servlet.http.HttpServletResponse;
 import guestbook.model.GuestBookBean;
 import guestbook.model.GuestBookDAO;
 
- 
- public class GuestBookServlet extends HttpServlet {
+
+public class GuestBookServlet extends HttpServlet {
+
+	//	 // config 값 추출 방법1
+	//	 String env;
+	//	 public void init(ServletConfig config) {
+	//		 System.out.println(config.getInitParameter("id"));
+	//		 
+	//		 env = config.getInitParameter("charset");
+	//	 }
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
+		// config 값 추출 방법 2
+//		String env = this.getInitParameter("charset");
+//		request.setCharacterEncoding(env);
+
+		// Servlet Context
+		ServletContext sc = this.getServletContext();
 		
 		String command=request.getParameter("command");
-		
+
 		if(command == null){
 			command = "list";
 		}		
-		
+
 		if(command.equals("list")){
 			list(request, response);
 		}else if(command.equals("write")){
@@ -39,14 +54,14 @@ import guestbook.model.GuestBookDAO;
 			delete(request, response);
 		}
 	}
-	
+
 	private void delete(HttpServletRequest request, HttpServletResponse response)
-	throws IOException, ServletException{
+			throws IOException, ServletException{
 		String strNum=request.getParameter("num");
 		String password = request.getParameter("password");
-		
+
 		if(strNum == null || strNum.trim().length() == 0 ||
-			password == null || password.trim().length() == 0){
+				password == null || password.trim().length() == 0){
 			response.sendRedirect("guestbook.do");
 			return;				
 		}
@@ -65,9 +80,9 @@ import guestbook.model.GuestBookDAO;
 		}
 		request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
-	
+
 	private void update(HttpServletRequest request, HttpServletResponse response) 
-	throws ServletException, IOException{
+			throws ServletException, IOException{
 		String strNum = request.getParameter("num");
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");				
@@ -75,13 +90,13 @@ import guestbook.model.GuestBookDAO;
 		String content=request.getParameter("content");
 		String password=request.getParameter("password");
 		if(strNum == null || strNum.trim().length() == 0 ||
-			title == null || title.trim().length() == 0 ||
-			author == null || author.trim().length() == 0 ||
-			email == null || email.trim().length() == 0 ||
-			content == null || content.trim().length() == 0 ||
-			password == null || password.trim().length() == 0 ){
-				response.sendRedirect("guestbook.do");
-				return;
+				title == null || title.trim().length() == 0 ||
+				author == null || author.trim().length() == 0 ||
+				email == null || email.trim().length() == 0 ||
+				content == null || content.trim().length() == 0 ||
+				password == null || password.trim().length() == 0 ){
+			response.sendRedirect("guestbook.do");
+			return;
 		}
 		boolean result = false;
 		try {
@@ -99,7 +114,7 @@ import guestbook.model.GuestBookDAO;
 	}
 
 	private void updateForm(HttpServletRequest request, HttpServletResponse response) 
-	throws IOException, ServletException{
+			throws IOException, ServletException{
 		String strNum = request.getParameter("num");
 		if(strNum == null || strNum.trim().length() == 0){
 			response.sendRedirect("guestbook.do");
@@ -146,18 +161,18 @@ import guestbook.model.GuestBookDAO;
 	}
 
 	private void write(HttpServletRequest request, HttpServletResponse response) 
-				throws IOException, ServletException{
+			throws IOException, ServletException{
 		String title=request.getParameter("title");
 		String author=request.getParameter("author");				
 		String email=request.getParameter("email");				
 		String content=request.getParameter("content");				
 		String password=request.getParameter("password");
-		
+
 		if(title == null || title.trim().length() == 0 ||
-			author == null || author.trim().length() == 0 ||
-			email == null || email.trim().length() == 0 ||
-			content == null || content.trim().length() == 0 ||
-			password == null || password.trim().length() == 0 ){
+				author == null || author.trim().length() == 0 ||
+				email == null || email.trim().length() == 0 ||
+				content == null || content.trim().length() == 0 ||
+				password == null || password.trim().length() == 0 ){
 			response.sendRedirect("write.html");
 			return;
 		}
@@ -176,7 +191,7 @@ import guestbook.model.GuestBookDAO;
 	}
 
 	private void list(HttpServletRequest request, HttpServletResponse response) 
-							throws ServletException, IOException {
+			throws ServletException, IOException {
 		String url = "error.jsp";
 		try {
 			request.setAttribute("list", GuestBookDAO.getAllContents());
@@ -188,13 +203,12 @@ import guestbook.model.GuestBookDAO;
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+

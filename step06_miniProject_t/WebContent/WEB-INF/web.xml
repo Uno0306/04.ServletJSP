@@ -48,7 +48,6 @@
 	</filter-mapping>
 
 	<listener>
-		<display-name></display-name>
 		<listener-class>util.RequestListener</listener-class>
 	</listener>
 
@@ -116,6 +115,7 @@
 	<!-- 찾을 수 없는 페이지 이동 시 error404.jsp로 이동 -->
 	<error-page>
 		<error-code>404</error-code>
+		<!-- <exception-type>java.lang.NullPointException</exception-type> -->
 		<location>/error404.jsp</location>
 	</error-page>
 	
